@@ -6,12 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class HelloApplication extends Application {
+public class UniversityManagementSystem extends Application {
   @Override
   public void start(Stage stage) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+    System.out.println("Current working directory: " + System.getProperty("user.dir"));
+
+    FXMLLoader fxmlLoader = new FXMLLoader(UniversityManagementSystem.class.getResource("FXMLDocument.fxml"));
     Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-    stage.setTitle("Hello!");
+    stage.setTitle("University Management System");
     stage.setScene(scene);
     stage.show();
   }
