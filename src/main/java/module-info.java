@@ -3,7 +3,8 @@ module com.javafx.univesitymanagementsystem {
   requires javafx.fxml;
   requires org.kordamp.ikonli.javafx;
   requires org.kordamp.ikonli.core;
-  requires  org.kordamp.ikonli.fontawesome;
+  requires org.kordamp.ikonli.fontawesome;
+  requires static lombok;
 
   opens com.javafx.univesitymanagementsystem to
       javafx.fxml;
