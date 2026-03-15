@@ -15,3 +15,7 @@ out/
 
 ### Gemini ###
 .gemini/
+
+### SQLite ###
+*.db
+*.sqlite
