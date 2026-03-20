@@ -1,6 +1,8 @@
 package com.javafx.univesitymanagementsystem.repository;
 
 import com.javafx.univesitymanagementsystem.database.Database;
+import com.javafx.univesitymanagementsystem.user.Role;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,7 +37,7 @@ public class UserRepository {
     }
   }
 
-  public void insertUser(String username, String email, String password, String role) throws SQLException {
+  public void insertUser(String username, String email, String password, Role role) throws SQLException {
     String sql = "INSERT INTO users (username, password, email_address, role) VALUES (?, ?, ?, ?)";
     try (Connection conn = Database.connect()) {
       conn.setAutoCommit(false);
@@ -43,7 +45,7 @@ public class UserRepository {
         stmt.setString(1, username);
         stmt.setString(2, password);
         stmt.setString(3, email.isEmpty() ? null : email);
-        stmt.setString(4, role);
+        stmt.setString(4, role.name());
         stmt.executeUpdate();
         conn.commit();
       } catch (SQLException e) {

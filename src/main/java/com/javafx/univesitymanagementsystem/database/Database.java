@@ -1,15 +1,18 @@
 package com.javafx.univesitymanagementsystem.database;
 
+import lombok.NoArgsConstructor;
+
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+@NoArgsConstructor
 public final class Database {
-  private static final String URL = "jdbc:sqlite:university_management.sqlite";
-
-  private Database() {}
+  private static final String DB_NAME = "university_management.sqlite";
 
   public static Connection connect() throws SQLException {
-    return DriverManager.getConnection(URL);
+    String dbPath = Paths.get(System.getProperty("user.dir"), DB_NAME).toString();
+    return DriverManager.getConnection(String.format("jdbc:sqlite:%s", dbPath));
   }
 }
