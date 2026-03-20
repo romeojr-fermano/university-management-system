@@ -51,7 +51,7 @@ dependencies {
 }
 
 flyway {
-    url = 'jdbc:sqlite:university_management.db'
+    url = 'jdbc:sqlite:university_management.sqlite'
     locations = ['filesystem:src/main/resources/db/migration']
 }
 

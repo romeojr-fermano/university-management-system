@@ -10,6 +10,13 @@ module com.javafx.univesitymanagementsystem {
 
   opens com.javafx.univesitymanagementsystem to
       javafx.fxml;
+  opens com.javafx.univesitymanagementsystem.controller to
+      javafx.fxml;
+  opens com.javafx.univesitymanagementsystem.model to
+      javafx.fxml;
 
   exports com.javafx.univesitymanagementsystem;
+  exports com.javafx.univesitymanagementsystem.controller;
+  exports com.javafx.univesitymanagementsystem.model;
+  exports com.javafx.univesitymanagementsystem.service;
 }

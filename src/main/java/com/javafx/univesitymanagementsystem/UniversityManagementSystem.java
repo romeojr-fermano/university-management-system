@@ -9,9 +9,8 @@ import javafx.stage.Stage;
 public class UniversityManagementSystem extends Application {
   @Override
   public void start(Stage stage) throws IOException {
-    System.out.println("Current working directory: " + System.getProperty("user.dir"));
-
-    FXMLLoader fxmlLoader = new FXMLLoader(UniversityManagementSystem.class.getResource("FXMLDocument.fxml"));
+    FXMLLoader fxmlLoader =
+        new FXMLLoader(UniversityManagementSystem.class.getResource("FXMLDocument.fxml"));
     Scene scene = new Scene(fxmlLoader.load());
     stage.setTitle("University Management System");
     stage.setScene(scene);
