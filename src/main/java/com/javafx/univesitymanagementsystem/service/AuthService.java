@@ -1,6 +1,7 @@
 package com.javafx.univesitymanagementsystem.service;
 
 import com.javafx.univesitymanagementsystem.model.SignupRequest;
+import com.javafx.univesitymanagementsystem.model.SignupResult;
 import com.javafx.univesitymanagementsystem.repository.UserRepository;
 import java.sql.SQLException;
 
@@ -31,9 +32,9 @@ public class AuthService {
         return new SignupResult(false, "Email already registered");
       }
 
-      userRepository.insertUser(request.username(), request.email(), request.password(), request.role());
+      userRepository.insertUser(
+          request.username(), request.email(), request.password(), request.role());
       return new SignupResult(true, null);
-
     } catch (SQLException e) {
       return new SignupResult(false, "Database error: " + e.getMessage());
     }
@@ -70,6 +71,4 @@ public class AuthService {
 
     return null;
   }
-
-  public record SignupResult(boolean success, String errorMessage) {}
 }

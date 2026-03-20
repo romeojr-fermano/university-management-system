@@ -1,5 +1,6 @@
 package com.javafx.univesitymanagementsystem.controller;
 
+import com.javafx.univesitymanagementsystem.model.SignupResult;
 import com.javafx.univesitymanagementsystem.user.Role;
 import com.javafx.univesitymanagementsystem.model.SignupRequest;
 import com.javafx.univesitymanagementsystem.service.AuthService;
@@ -14,10 +15,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class AuthController implements Initializable {
 
-  private final AuthService authService = new AuthService();
+  private final AuthService authService;
 
   @FXML public AnchorPane login_form;
   @FXML public AnchorPane admin_register_form;
@@ -50,6 +53,7 @@ public class AuthController implements Initializable {
     roleList();
   }
 
+  @FXML
   public void switchSignupForm() {
     switch (login_role.getSelectionModel().getSelectedItem()) {
       case "Admin" -> switchVisible(false, true, false, false);
@@ -58,6 +62,7 @@ public class AuthController implements Initializable {
     }
   }
 
+  @FXML
   public void signIn() {
     switchVisible(true, false, false, false);
   }
@@ -65,15 +70,15 @@ public class AuthController implements Initializable {
   @FXML
   public void handleSignup() {
     String role = detectRoleFromVisibleForm();
-    
+
     if (role == null) {
       showErrorAlert("No signup form is currently visible");
       return;
     }
-    
+
     SignupRequest request = extractFormFields(role);
 
-    AuthService.SignupResult result = authService.signup(request);
+    SignupResult result = authService.signup(request);
 
     if (!result.success()) {
       showErrorAlert(result.errorMessage());
@@ -82,7 +87,7 @@ public class AuthController implements Initializable {
 
     showSuccessAlertAndNavigate();
   }
-  
+
   private void showSuccessAlertAndNavigate() {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setTitle("Success");
@@ -127,7 +132,8 @@ public class AuthController implements Initializable {
       default -> throw new IllegalStateException("Unknown role: " + role);
     }
 
-    return new SignupRequest(username, email, password, confirmPassword, Role.valueOf(role.toUpperCase()));
+    return new SignupRequest(
+        username, email, password, confirmPassword, Role.valueOf(role.toUpperCase()));
   }
 
   private void showSuccessAlert() {

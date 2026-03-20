@@ -10,8 +10,13 @@ plugins {
 group = "com.javafx"
 version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
+// ---------------------------------------------------------------------------
+// Project Configuration
+// ---------------------------------------------------------------------------
+
+application {
+    mainModule.set("com.javafx.univesitymanagementsystem")
+    mainClass.set("com.javafx.univesitymanagementsystem.UniversityManagementSystem")
 }
 
 java {
@@ -20,43 +25,67 @@ java {
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = "UTF-8"
-}
-
-application {
-    mainModule.set("com.javafx.univesitymanagementsystem")
-    mainClass.set("com.javafx.univesitymanagementsystem.UniversityManagementSystem")
-}
-
 javafx {
     version = "25.0.2"
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
+// ---------------------------------------------------------------------------
+// Dependencies
+// ---------------------------------------------------------------------------
+
+repositories {
+    mavenCentral()
+}
+
 dependencies {
+    // UI
     implementation 'org.kordamp.ikonli:ikonli-javafx:12.4.0'
     implementation 'org.kordamp.ikonli:ikonli-core:12.4.0'
     implementation 'org.kordamp.ikonli:ikonli-fontawesome-pack:12.4.0'
+
+    // Database
     implementation 'org.xerial:sqlite-jdbc:3.51.2.0'
     implementation 'org.flywaydb:flyway-core:12.1.0'
 
+    // Lombok
     compileOnly 'org.projectlombok:lombok:1.18.44'
     annotationProcessor 'org.projectlombok:lombok:1.18.44'
 
+    // Testing
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.12.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.12.1'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.44'
     testCompileOnly 'org.projectlombok:lombok:1.18.44'
 }
 
+// ---------------------------------------------------------------------------
+// Database Configuration
+// ---------------------------------------------------------------------------
+
 flyway {
     url = "jdbc:sqlite:${rootProject.rootDir}/university_management.sqlite"
     locations = ['filesystem:src/main/resources/db/migration']
 }
 
+// ---------------------------------------------------------------------------
+// Task Configuration
+// ---------------------------------------------------------------------------
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+}
+
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
+}
+
+run {
+    workingDir = rootDir
+    jvmArgs = [
+        '--enable-native-access=org.xerial.sqlitejdbc',
+        '--enable-native-access=javafx.graphics'
+    ]
 }
 
 jlink {
