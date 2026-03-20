@@ -19,4 +19,6 @@ module com.javafx.univesitymanagementsystem {
   exports com.javafx.univesitymanagementsystem.controller;
   exports com.javafx.univesitymanagementsystem.model;
   exports com.javafx.univesitymanagementsystem.service;
+    exports com.javafx.univesitymanagementsystem.user;
+    opens com.javafx.univesitymanagementsystem.user to javafx.fxml;
 }

@@ -1,6 +1,6 @@
 package com.javafx.univesitymanagementsystem.controller;
 
-import com.javafx.univesitymanagementsystem.Role;
+import com.javafx.univesitymanagementsystem.user.Role;
 import com.javafx.univesitymanagementsystem.model.SignupRequest;
 import com.javafx.univesitymanagementsystem.service.AuthService;
 import java.net.URL;
@@ -65,6 +65,12 @@ public class AuthController implements Initializable {
   @FXML
   public void handleSignup() {
     String role = detectRoleFromVisibleForm();
+    
+    if (role == null) {
+      showErrorAlert("No signup form is currently visible");
+      return;
+    }
+    
     SignupRequest request = extractFormFields(role);
 
     AuthService.SignupResult result = authService.signup(request);
@@ -74,8 +80,16 @@ public class AuthController implements Initializable {
       return;
     }
 
-    showSuccessAlert();
-    signIn();
+    showSuccessAlertAndNavigate();
+  }
+  
+  private void showSuccessAlertAndNavigate() {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Success");
+    alert.setHeaderText("Account Created");
+    alert.setContentText("Your account has been created successfully. Please sign in.");
+    alert.setOnCloseRequest(event -> signIn());
+    alert.show();
   }
 
   private String detectRoleFromVisibleForm() {
@@ -113,7 +127,7 @@ public class AuthController implements Initializable {
       default -> throw new IllegalStateException("Unknown role: " + role);
     }
 
-    return new SignupRequest(username, email, password, confirmPassword, role);
+    return new SignupRequest(username, email, password, confirmPassword, Role.valueOf(role.toUpperCase()));
   }
 
   private void showSuccessAlert() {
