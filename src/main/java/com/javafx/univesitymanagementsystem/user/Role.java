@@ -1,4 +1,4 @@
-package com.javafx.univesitymanagementsystem;
+package com.javafx.univesitymanagementsystem.user;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

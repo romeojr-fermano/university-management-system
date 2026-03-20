@@ -13,9 +13,19 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
+### Eclipse ##
+.project
+.classpath
+.settings/
+bin
+.factorypath
+
 ### Gemini ###
 .gemini/
 
 ### SQLite ###
 *.db
 *.sqlite
+
+### OpenCode ###
+.opencode/

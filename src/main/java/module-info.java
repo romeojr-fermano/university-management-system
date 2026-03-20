@@ -7,9 +7,19 @@ module com.javafx.univesitymanagementsystem {
   requires org.kordamp.ikonli.core;
   requires org.kordamp.ikonli.fontawesome;
   requires static lombok;
+  requires org.apache.commons.validator;
 
   opens com.javafx.univesitymanagementsystem to
       javafx.fxml;
+  opens com.javafx.univesitymanagementsystem.controller to
+      javafx.fxml;
+  opens com.javafx.univesitymanagementsystem.model to
+      javafx.fxml;
 
   exports com.javafx.univesitymanagementsystem;
+  exports com.javafx.univesitymanagementsystem.controller;
+  exports com.javafx.univesitymanagementsystem.model;
+  exports com.javafx.univesitymanagementsystem.service;
+    exports com.javafx.univesitymanagementsystem.user;
+    opens com.javafx.univesitymanagementsystem.user to javafx.fxml;
 }

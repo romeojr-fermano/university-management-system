@@ -7,7 +7,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
            prefWidth="350.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="com.javafx.univesitymanagementsystem.FXMLDocumentController">
+           fx:controller="com.javafx.univesitymanagementsystem.controller.AuthController">
     <AnchorPane fx:id="login_form" prefHeight="500.0" prefWidth="350.0" styleClass="bg-form"
                 stylesheets="@design/LoginForm.css">
         <Label layoutX="49.0" layoutY="91.0" styleClass="header" stylesheets="@design/LoginForm.css"
@@ -45,7 +45,8 @@
         <FontIcon fill="#12ea8d" iconLiteral="fa-user" iconSize="24" layoutX="56.0" layoutY="205.0"/>
         <FontIcon fill="#12ea8d" iconLiteral="fa-lock" iconSize="24" layoutX="57.0" layoutY="250.0"/>
         <Button fx:id="admin_signup_button" layoutX="49.0" layoutY="350.0" mnemonicParsing="false" prefHeight="40.0"
-                prefWidth="134.0" styleClass="btn" stylesheets="@design/LoginForm.css" text="SIGNUP"/>
+                prefWidth="134.0" styleClass="btn" stylesheets="@design/LoginForm.css" text="SIGNUP"
+                onAction="#handleSignup"/>
 
         <Label layoutX="52.0" layoutY="121.0" text="Admin" textFill="#c0ffe4">
             <font>
@@ -87,7 +88,8 @@
         <FontIcon fill="#12ea8d" iconLiteral="fa-lock" iconSize="24" layoutX="57.0" layoutY="243.0"/>
         <FontIcon fill="#12ea8d" iconLiteral="fa-lock" iconSize="24" layoutX="57.0" layoutY="288.0"/>
         <Button fx:id="student_signup_button" layoutX="49.0" layoutY="330.0" mnemonicParsing="false" prefHeight="40.0"
-                prefWidth="134.0" styleClass="btn" stylesheets="@design/LoginForm.css" text="SIGNUP"/>
+                prefWidth="134.0" styleClass="btn" stylesheets="@design/LoginForm.css" text="SIGNUP"
+                onAction="#handleSignup"/>
         <HBox alignment="CENTER" layoutY="463.0" prefWidth="350.0" spacing="5.0">
             <Label text="Already have an account?" textFill="WHITE"/>
             <Hyperlink fx:id="student_sign_in" onAction="#signIn" text="Sign in here" textFill="#4debef"/>
@@ -120,7 +122,8 @@
         <FontIcon fill="#12ea8d" iconLiteral="fa-lock" iconSize="24" layoutX="57.0" layoutY="243.0"/>
         <FontIcon fill="#12ea8d" iconLiteral="fa-lock" iconSize="24" layoutX="57.0" layoutY="288.0"/>
         <Button fx:id="teacher_signup_button" layoutX="49.0" layoutY="330.0" mnemonicParsing="false" prefHeight="40.0"
-                prefWidth="134.0" styleClass="btn" stylesheets="@design/LoginForm.css" text="SIGNUP"/>
+                prefWidth="134.0" styleClass="btn" stylesheets="@design/LoginForm.css" text="SIGNUP"
+                onAction="#handleSignup"/>
         <HBox alignment="CENTER" layoutY="463.0" prefWidth="350.0" spacing="5.0">
             <Label text="Already have an account?" textFill="WHITE"/>
             <Hyperlink fx:id="teacher_sign_in" onAction="#signIn" text="Sign in here" textFill="#4debef"/>
