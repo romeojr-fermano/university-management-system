@@ -91,7 +91,7 @@ public class AuthController implements Initializable {
     alert.setTitle("Success");
     alert.setHeaderText("Account Created");
     alert.setContentText("Your account has been created successfully. Please sign in.");
-    alert.setOnCloseRequest(event -> signIn());
+    alert.setOnCloseRequest(_ -> signIn());
     alert.show();
   }
 
@@ -132,14 +132,6 @@ public class AuthController implements Initializable {
 
     return new SignupRequest(
         username, email, password, confirmPassword, Role.valueOf(role.toUpperCase()));
-  }
-
-  private void showSuccessAlert() {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Success");
-    alert.setHeaderText("Account Created");
-    alert.setContentText("Your account has been created successfully. Please sign in.");
-    alert.showAndWait();
   }
 
   private void showErrorAlert(String message) {
