@@ -1,11 +1,10 @@
 package com.javafx.univesitymanagementsystem.database;
 
-import lombok.NoArgsConstructor;
-
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public final class Database {

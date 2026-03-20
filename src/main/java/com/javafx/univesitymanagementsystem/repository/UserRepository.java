@@ -2,7 +2,6 @@ package com.javafx.univesitymanagementsystem.repository;
 
 import com.javafx.univesitymanagementsystem.database.Database;
 import com.javafx.univesitymanagementsystem.user.Role;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +12,7 @@ public class UserRepository {
   public boolean usernameExists(String username) throws SQLException {
     String sql = "SELECT COUNT(*) FROM users WHERE username = ?";
     try (Connection conn = Database.connect();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        PreparedStatement stmt = conn.prepareStatement(sql)) {
       stmt.setString(1, username);
       try (ResultSet rs = stmt.executeQuery()) {
         rs.next();
@@ -28,7 +27,7 @@ public class UserRepository {
     }
     String sql = "SELECT COUNT(*) FROM users WHERE email_address = ?";
     try (Connection conn = Database.connect();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        PreparedStatement stmt = conn.prepareStatement(sql)) {
       stmt.setString(1, email);
       try (ResultSet rs = stmt.executeQuery()) {
         rs.next();
@@ -37,7 +36,8 @@ public class UserRepository {
     }
   }
 
-  public void insertUser(String username, String email, String password, Role role) throws SQLException {
+  public void insertUser(String username, String email, String password, Role role)
+      throws SQLException {
     String sql = "INSERT INTO users (username, password, email_address, role) VALUES (?, ?, ?, ?)";
     try (Connection conn = Database.connect()) {
       conn.setAutoCommit(false);

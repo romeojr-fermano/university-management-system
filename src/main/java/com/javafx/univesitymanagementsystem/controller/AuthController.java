@@ -1,9 +1,9 @@
 package com.javafx.univesitymanagementsystem.controller;
 
-import com.javafx.univesitymanagementsystem.model.SignupResult;
-import com.javafx.univesitymanagementsystem.user.Role;
 import com.javafx.univesitymanagementsystem.model.SignupRequest;
+import com.javafx.univesitymanagementsystem.model.SignupResult;
 import com.javafx.univesitymanagementsystem.service.AuthService;
+import com.javafx.univesitymanagementsystem.user.Role;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +15,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 public class AuthController implements Initializable {
 
-  private final AuthService authService;
+  private final AuthService authService = new AuthService();
 
   @FXML public AnchorPane login_form;
   @FXML public AnchorPane admin_register_form;

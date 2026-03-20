@@ -4,12 +4,14 @@ import com.javafx.univesitymanagementsystem.model.SignupRequest;
 import com.javafx.univesitymanagementsystem.model.SignupResult;
 import com.javafx.univesitymanagementsystem.repository.UserRepository;
 import java.sql.SQLException;
+import org.apache.commons.validator.routines.EmailValidator;
 
 public class AuthService {
 
-  private static final String EMAIL_REGEX =
-      "^[\\w.!#$%&'*+/=?^`{|}~-]+@[a-z\\d](?:[a-z\\d-]{0,61}[a-z\\d])?(?:\\.[a-z\\d](?:[a-z\\d-]{0,61}[a-z\\d])?)*$";
   private static final int MIN_PASSWORD_LENGTH = 8;
+  private static final int MAX_PASSWORD_LENGTH = 72;
+  private static final int MIN_USERNAME_LENGTH = 3;
+  private static final int MAX_USERNAME_LENGTH = 50;
 
   private final UserRepository userRepository;
 
@@ -45,7 +47,8 @@ public class AuthService {
       return "Username is required";
     }
 
-    if (request.username().length() < 3 || request.username().length() > 50) {
+    if (request.username().length() < MIN_USERNAME_LENGTH
+        || request.username().length() > MAX_USERNAME_LENGTH) {
       return "Username must be between 3 and 50 characters";
     }
 
@@ -57,7 +60,7 @@ public class AuthService {
       return "Password must be at least " + MIN_PASSWORD_LENGTH + " characters";
     }
 
-    if (request.password().length() > 72) {
+    if (request.password().length() > MAX_PASSWORD_LENGTH) {
       return "Password must not exceed 72 characters";
     }
 
@@ -65,7 +68,7 @@ public class AuthService {
       return "Passwords don't match";
     }
 
-    if (!request.email().isEmpty() && !request.email().matches(EMAIL_REGEX)) {
+    if (!request.email().isEmpty() && !EmailValidator.getInstance().isValid(request.email())) {
       return "Invalid email format";
     }
 

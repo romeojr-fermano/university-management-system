@@ -47,6 +47,7 @@ dependencies {
     // Database
     implementation 'org.xerial:sqlite-jdbc:3.51.2.0'
     implementation 'org.flywaydb:flyway-core:12.1.0'
+    implementation 'commons-validator:commons-validator:1.10.0'
 
     // Lombok
     compileOnly 'org.projectlombok:lombok:1.18.44'
